@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 import * as serviceWorker from './serviceWorker';
 import router from './router';
+import store from './redux/configureStore';
 
 function getRootComponent(router) {
   return props => (
-      router({ ...props })
+      <Provider store={store}>
+        {router({ ...props })}
+      </Provider>
   );
 }
 
