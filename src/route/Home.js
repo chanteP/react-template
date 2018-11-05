@@ -22,8 +22,8 @@ class Home extends React.PureComponent {
   }
 }
 
-const mapStateToProps = ({ global }) => ({
-  version: global.version,
+const mapStateToProps = ({ version }) => ({
+  version: version.version,
 });
 
 export default connect(mapStateToProps)(Home);

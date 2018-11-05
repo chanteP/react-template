@@ -1,4 +1,4 @@
-export const reducerName = 'global';
+export const reducerName = 'version';
 
 const initialState = {
   version: '1.0.0',

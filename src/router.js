@@ -2,8 +2,10 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 
-import Home from './route/Home';
-import Page from './route/Page';
+import dynamicWrapper from './dynamicWrapper';
+
+const Home = dynamicWrapper(() => import('./route/Home'), ['version']);
+const Page = dynamicWrapper(() => import('./route/Page'));
 
 function RouterConfig({ history }) {
   return (

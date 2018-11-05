@@ -4,11 +4,10 @@ import { routerMiddleware, connectRouter } from 'connected-react-router';
 import thunk from 'redux-thunk';
 
 import reducerRegistry from './reducerRegistry';
-import global, { reducerName } from '../model/global';
 
 export const history = createBrowserHistory();
+
 // 注册全局 model
-reducerRegistry.register(reducerName, global);
 reducerRegistry.register('router', connectRouter(history));
 
 const initialState = {};
