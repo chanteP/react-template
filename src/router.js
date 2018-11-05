@@ -1,15 +1,18 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 
-import Example from './route/Example';
+import Home from './route/Home';
+import Page from './route/Page';
 
-function RouterConfig() {
+function RouterConfig({ history }) {
   return (
-      <Router>
+      <ConnectedRouter history={history}>
         <Switch>
-          <Route path="/" component={Example} />
+          <Route exact path="/" component={Home} />
+          <Route path="/another" component={Page} />
         </Switch>
-      </Router>
+      </ConnectedRouter>
   );
 }
 

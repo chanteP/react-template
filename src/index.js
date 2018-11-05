@@ -4,12 +4,12 @@ import { Provider } from 'react-redux';
 
 import * as serviceWorker from './serviceWorker';
 import router from './router';
-import store from './redux/configureStore';
+import store, { history } from './redux/configureStore';
 
 function getRootComponent(router) {
   return props => (
       <Provider store={store}>
-        {router({ ...props })}
+        {router({ history, ...props })}
       </Provider>
   );
 }

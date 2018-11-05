@@ -1,11 +1,15 @@
 import { combineReducers, applyMiddleware, createStore } from 'redux';
+import { createBrowserHistory } from 'history';
+import { routerMiddleware, connectRouter } from 'connected-react-router';
 import thunk from 'redux-thunk';
 
 import reducerRegistry from './reducerRegistry';
 import global, { reducerName } from '../model/global';
 
+export const history = createBrowserHistory();
 // 注册全局 model
 reducerRegistry.register(reducerName, global);
+reducerRegistry.register('router', connectRouter(history));
 
 const initialState = {};
 const combine = (reducers) => {
@@ -19,7 +23,7 @@ const combine = (reducers) => {
   return combineReducers(reducers);
 };
 const reducer = combine(reducerRegistry.getReducers());
-const store = createStore(reducer, initialState, applyMiddleware(thunk));
+const store = createStore(reducer, initialState, applyMiddleware(routerMiddleware(history), thunk));
 
 // 当一个新的 reducer 注册时，替换 store 的 reducer
 reducerRegistry.setChangeListener(reducers => {
